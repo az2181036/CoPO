@@ -1,7 +1,8 @@
 import copy
 
 from copo.utils import validate_config_add_multiagent
-from ray.rllib.agents.ppo.ppo import PPOTrainer, PPOTFPolicy, validate_config as PPO_valid, DEFAULT_CONFIG as PPO_CONFIG
+from ray.rllib.algorithms.ppo import validate_config as PPO_valid
+from ray.rllib.algorithms.ppo import PPOTrainer, PPOTF2Policy, , DEFAULT_CONFIG as PPO_CONFIG
 from ray.tune.utils import merge_dicts
 
 DEFAULT_IPPO_CONFIG = merge_dicts(
@@ -29,7 +30,7 @@ DEFAULT_IPPO_CONFIG = merge_dicts(
 IPPOTrainer = PPOTrainer.with_updates(
     name="IPPO",
     default_config=DEFAULT_IPPO_CONFIG,
-    validate_config=lambda c: validate_config_add_multiagent(c, PPOTFPolicy, PPO_valid)
+    validate_config=lambda c: validate_config_add_multiagent(c, PPOTF2Policy, PPO_valid)
 )
 
 

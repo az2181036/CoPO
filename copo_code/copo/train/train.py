@@ -5,7 +5,7 @@ import pickle
 import numpy as np
 from copo.train.utils import initialize_ray
 from ray import tune
-from ray.tune import CLIReporter
+from ray.tune import Trainable, CLIReporter
 
 
 def train(
@@ -24,15 +24,16 @@ def train(
     save_pkl=True,
     custom_callback=None,
     max_failures=1,
-    # wandb support is removed!
     wandb_key_file=None,
     wandb_project=None,
-    wandb_team="copo",
+    wandb_team=None,
     wandb_log_config=True,
     init_kws=None,
     **kwargs
 ):
+
     init_kws = init_kws or dict()
+
     # initialize ray
     if not os.environ.get("redis_password"):
         initialize_ray(test_mode=test_mode, local_mode=local_mode, num_gpus=num_gpus, **init_kws)
@@ -82,8 +83,8 @@ def train(
     if "verbose" not in kwargs:
         kwargs["verbose"] = 1 if not test_mode else 2
 
-    metric_columns = CLIReporter.DEFAULT_COLUMNS.copy()
-    progress_reporter = CLIReporter(metric_columns)
+    # metric_columns = CLIReporter.DEFAULT_COLUMNS.copy()
+    progress_reporter = CLIReporter()
     progress_reporter.add_metric_column("success")
     progress_reporter.add_metric_column("crash")
     progress_reporter.add_metric_column("out")

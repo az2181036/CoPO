@@ -1,0 +1,15 @@
+Failure # 1 (occurred at 2022-10-21_15-21-00)
+Traceback (most recent call last):
+  File "/home/lwf/anaconda3/envs/intuition/lib/python3.7/site-packages/ray/tune/execution/ray_trial_executor.py", line 989, in get_next_executor_event
+    future_result = ray.get(ready_future)
+  File "/home/lwf/anaconda3/envs/intuition/lib/python3.7/site-packages/ray/_private/client_mode_hook.py", line 105, in wrapper
+    return func(*args, **kwargs)
+  File "/home/lwf/anaconda3/envs/intuition/lib/python3.7/site-packages/ray/_private/worker.py", line 2277, in get
+    raise value
+ray.exceptions.RayActorError: The actor died unexpectedly before finishing this task.
+	class_name: QMix
+	actor_id: acf1b540216f6beaba53fbc001000000
+	namespace: 3849c6a7-87dd-4dc8-bea7-eb5eab7fc2f9
+The actor is dead because its owner has died. Owner Id: 01000000ffffffffffffffffffffffffffffffffffffffffffffffff Owner Ip address: 172.27.215.27 Owner worker exit type: SYSTEM_ERROR Worker exit detail: Owner's node has crashed.
+The actor never ran - it was cancelled before it started running.
+

@@ -1,0 +1,11 @@
+{
+  "callbacks": "<class 'copo.callbacks.MultiAgentDrivingCallbacks'>",
+  "env": "MultiAgentIntersectionEnv",
+  "env_config": {
+    "start_seed": 5000
+  },
+  "log_level": "INFO",
+  "num_cpus_per_worker": 0.1,
+  "num_gpus": 0,
+  "seed": 0
+}
